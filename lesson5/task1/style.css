@@ -1,0 +1,62 @@
+.litblock_top{
+    height: 30px;
+    width: 640px;
+    position: absolute;
+    left: 39px;
+    border: 1px solid black;
+}
+.numblock_left{
+    height: 640px;
+    width: 30px;
+    position: absolute;
+    top: 39px;
+    border: 1px solid black;
+}
+.gameblock{
+    height: 640px;
+    width: 640px;
+    position: absolute;
+    left: 39px;
+    top: 39px;
+    border: 1px solid black;
+}
+.numblock_right{
+    height: 640px;
+    width: 30px;
+    position: absolute;
+    left: 680px;
+    top: 39px;
+    border: 1px solid black;
+}
+.litblock_down{
+    height: 30px;
+    width: 640px;
+    position: absolute;
+    left: 39px;
+    top: 680px;
+    border: 1px solid black;
+}
+.cell{
+    width: 80px;
+    height: 80px;
+    float: left;
+}
+.black{
+    background: black;
+}
+.white{
+    background: white;
+}
+.cell_num{
+    width: 30px;
+    height: 80px;
+    text-align: center;
+    line-height: 80px;
+}
+.cell_lit{
+    width: 80px;
+    height: 30px;
+    text-align: center;
+    line-height: 30px;
+    float: left;
+}
