@@ -1,9 +1,22 @@
+/*
+На странице отображается список каталога товаров. При нажатии на кнопку купить
+формируется таблица корзины товаров и в нее добавлется один экземпляр выбранного 
+товара. При этом в каталоге количество купленного товара уменьшается на 1. При 
+покупке этого же товара в корзине увеличивается количество товара на 1.
+Реализован просмотр фото (надо нажать на кнопку фото). Фото добавил только на два верхние
+товары - Телевизор и СВЧ!!!!!!!!!
+Таже есть возможность перелистывать
+фото, нажимая на кнопки Предыдущая и Следующая. Модальное окно выполнено в виде блока div,
+у которого менятся свойство display - none/block
+*/
+
 // обьявление переменных
 const catalog = document.querySelector('#catalog')
 const basketElem = document.querySelector('#basket')
 const h1 = document.querySelector('#head')
 const basket_h1 = document.querySelector('#baskethead')
-const modalContainer = document.querySelector('.modal')
+const body = document.querySelector('body')
+let modalContainer
 let catalogTable
 let basketTable
 let p
@@ -62,7 +75,7 @@ let catalogProd = {
 
 // добавляем товары в каталог
 catalogProd.addProduct('Телевизор', 50000, 1, ['телевизор1.jpg', 'телевизор2.jpg', 'телевизор3.jpg', 'телевизор4.jpg'])
-catalogProd.addProduct('СВЧ', 25000, 1, ["СВЧ1.jpg", 'СВЧ2.jpg', 'СВЧ3.jpg'])
+catalogProd.addProduct('СВЧ', 25000, 1, ["СВЧ1.jpg", 'СВЧ2.png', 'СВЧ3.png'])
 catalogProd.addProduct('Подушка', 2500, 3)
 catalogProd.addProduct('Чайник', 2500, 2)
 catalogProd.addProduct('Шкаф', 50000, 1)
@@ -73,25 +86,72 @@ catalogProd.addProduct('Одеяло', 2500, 2)
 
 // модальное окно
 function createModal (id){
+    modalContainer = document.createElement('div')
+    modalContainer.classList.add('modal')
+    body.appendChild(modalContainer)
     let prod = catalogProd.infoById(id)
     let modalHeader = document.createElement('h2')
     modalHeader.textContent = prod[0]
     modalContainer.appendChild(modalHeader)
     let img = document.createElement('img')
     img.src = prod[3][0]
+    img.id = prod[3][0]
     modalContainer.appendChild(img)
+    let btnContainer = document.createElement('div')
+    btnContainer.classList.add('btnCont')
+    modalContainer.append(btnContainer)
     let btnClose = document.createElement('button')
     btnClose.textContent = 'Закрыть'
     btnClose.addEventListener('click', function (){
         modalContainer.classList.toggle('visible')
+        modalContainer.parentNode.removeChild(modalContainer)
     })
     let btnNext = document.createElement('button')
     btnNext.textContent = 'Следующая'
     btnNext.addEventListener('click', function(){
-        alert(img.src)
+        for (el in catalogProd.products){
+            for (j in catalogProd.products[el].photo){
+                if (catalogProd.products[el].photo[j] == img.id){
+                    
+                    if (j == catalogProd.products[el].photo.length-1){
+                        img.src = catalogProd.products[el].photo[0]
+                        img.id = catalogProd.products[el].photo[0]
+                        return
+                    }else{
+                        img.src = catalogProd.products[el].photo[Number(j) + 1]
+                        img.id = catalogProd.products[el].photo[Number(j) + 1]
+                        return
+                    }
+                }
+            }
+            
+        }
     })
-    modalContainer.appendChild(btnClose)
-    modalContainer.appendChild(btnNext)
+    let btnPrev = document.createElement('button')
+    btnPrev.textContent = 'Предыдущая'
+    btnPrev.addEventListener('click', function(){
+        for (el in catalogProd.products){
+            for (j in catalogProd.products[el].photo){
+                if (catalogProd.products[el].photo[j] == img.id){
+                    
+                    if (j == 0){
+                        img.src = catalogProd.products[el].photo[catalogProd.products[el].photo.length-1]
+                        img.id = catalogProd.products[el].photo[catalogProd.products[el].photo.length-1]
+                        return
+                    }else{
+                        img.src = catalogProd.products[el].photo[Number(j) - 1]
+                        img.id = catalogProd.products[el].photo[Number(j) - 1]
+                        return
+                    }
+                }
+            }
+            
+        }
+    })
+    btnContainer.appendChild(btnPrev)
+    btnContainer.appendChild(btnNext)
+    btnContainer.appendChild(btnClose)
+    
     modalContainer.classList.toggle('visible')
 }
 
@@ -264,37 +324,7 @@ let basket = {
                 this.basketProd.splice(i, 1)
             }
         }
-    }
-    // метод, отвечающий за обновление корзины на сайте
-    // view_basket(){
-    //     if(basket.basketProd.length == 0){
-    //         p = document.createElement('p')
-    //         p.append('Корзина пуста')
-    //         basketElem.appendChild(p)
-    //     } else{
-    //         p.innerHTML = 'Товар добавлен'
-    //         alert(basket.basketProd)
-    //         for (let i = 0; i < basket.basketProd.length; i++){
-    //             tr = document.createElement('tr')
-    //             table.appendChild(tr)
-    //             td = document.createElement('td')
-    //             td.append(basket.basketProd[i].id)
-    //             tr.appendChild(td)
-
-    //             td = document.createElement('td')
-    //             td.append(basket.basketProd[i].name)
-    //             tr.appendChild(td)
-
-    //             td = document.createElement('td')
-    //             td.append(basket.basketProd[i].price)
-    //             tr.appendChild(td)
-
-    //             td = document.createElement('td')
-    //             td.append(basket.basketProd[i].count)
-    //             tr.appendChild(td)
-    //         }
-        // }
-    // }
+    }   
 }
 
 
