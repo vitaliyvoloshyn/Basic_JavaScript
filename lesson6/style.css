@@ -1,0 +1,32 @@
+.modal{
+    width: 1200px;
+    height: 800px;
+    position: absolute;
+    border: 1px solid black;
+    top: 2vh;
+    left: calc(50% - 600px);
+    background: white;
+    display: none;
+}
+#basket{
+    position: absolute;
+    left: 400px;
+    margin-left: 200px;
+}
+#catalog{
+    float: left;
+}
+.visible{
+    display: block;
+}
+.unvisible{
+    display: none;
+}
+img{
+    height: 85%;
+    width: auto;
+}
+.btnCont{
+    height: 30px;
+    width: 400px;
+}
