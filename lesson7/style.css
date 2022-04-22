@@ -1,0 +1,112 @@
+.flex_container{
+    display: flex;
+    justify-content: space-between;
+    background: grey;
+    height: 80px;
+}
+.header{
+    margin-left: 10px;
+}
+.basket{
+    display: flex;
+    margin-right: 10px;
+    align-items: center;
+    line-height: 80px;
+}
+.basket_text{
+    margin: 5px;
+    font-size: 18px;
+}
+.basket_ico{
+    display: flex;
+    justify-content: right;
+    height: 40px;
+    border-radius: 20px;
+}
+.cardProduct{
+    display: flex;
+    margin: 10px 10px 0px 0px;
+    align-items: stretch;
+    border-bottom: 1px solid salmon;
+    width: 530px;
+    height: 110px;
+}
+.photoProduct{
+    width: 150px;
+    height: 100px;
+    margin-right: 10px;
+
+}
+.name{
+    margin: 0px;
+}
+.info{
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    justify-content: flex-start;
+    padding: 0px;
+}
+.buy{
+    display: flex;
+    align-items: center;
+}
+.btn_buy{
+    background: green;
+    width: 80px;
+    height: 35px;
+    border-radius: 5px;
+}
+.modal{
+    width: 1200px;
+    height: 800px;
+    position: absolute;
+    border: 1px solid black;
+    top: 2vh;
+    left: calc(50% - 600px);
+    background: rgb(233, 228, 228);
+    flex-direction: column;
+    display: none;
+}
+.personal_info{
+    display: none;
+}
+.delivery_info{
+    display: none;
+}
+.final_info{
+    display: none;
+}
+.visible_block{
+    display: block;
+}
+.visible{
+    display: flex;
+}
+.unvisible{
+    display: none;
+}
+.div_photo{
+    width: 800px;
+    align-self: center;
+    display: flex;
+}
+.basket_cardProduct{
+    display: grid;
+    margin: 10px 10px 0px 0px;
+    align-items: stretch;
+    border-bottom: 1px solid salmon;
+    width: 905px;
+    height: 110px;
+    grid-template-columns: repeat(6, 150px);
+    column-gap: 10px;
+    grid-template-rows: 25% 75px;
+    grid-template-areas: 'photo A B C D btn'
+                         'photo F G H J btn'
+}
+.photo{grid-area: photo;}
+.btn_del{grid-area: btn;}
+.name_prod{margin: 0px; font-size: 19pt;}
+.price_prod{margin: 4px; font-size: 16pt;}
+.count_prod{margin: 4px; font-size: 16pt;}
+.sum{margin: 4px; font-size: 16pt;}
